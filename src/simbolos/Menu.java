@@ -52,11 +52,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        list_salida.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane4.setViewportView(list_salida);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,17 +93,18 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_analizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_analizarActionPerformed
-        DefaultListModel listModel = new DefaultListModel();
+        DefaultListModel listMod = new DefaultListModel();
         String entrada=Area_entrada.getText();
         char[] cadena=entrada.toCharArray();
         int letters=0;
-        int simbole=0;
+        int symbol=0;
         int numbers=0;
         
         for(int i=0;i<cadena.length;i++){
-            if(cadena[i]>=33 && cadena[i]<=47){
-               listModel.addElement(Character.toString(cadena[i])+" ------>"+"Signo");
-               list_salida.setModel(listModel);
+            if((cadena[i]>=33 && cadena[i]<=47) ||(cadena[i]>=58 && cadena[i]<=64)||(cadena[i]>=91 && cadena[i]<=96)||(cadena[i]>=123 && cadena[i]<=125)){
+               listMod.addElement(Character.toString(cadena[i])+" ------>"+"Signo");
+               list_salida.setModel(listMod);
+               symbol++;
             }
         
         }

@@ -59,16 +59,16 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(201, 201, 201))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(104, 104, 104)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77)))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(77, 77, 77)
                 .addComponent(bt_analizar)
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -84,8 +84,8 @@ public class Menu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -101,13 +101,35 @@ public class Menu extends javax.swing.JFrame {
         int numbers=0;
         
         for(int i=0;i<cadena.length;i++){
+         //----Reconoce todos los distintos tipos de signos--------   
             if((cadena[i]>=33 && cadena[i]<=47) ||(cadena[i]>=58 && cadena[i]<=64)||(cadena[i]>=91 && cadena[i]<=96)||(cadena[i]>=123 && cadena[i]<=125)){
                listMod.addElement(Character.toString(cadena[i])+" ------>"+"Signo");
                list_salida.setModel(listMod);
                symbol++;
             }
-        
+         //----Reconoce todos las letras-------------------------   
+            if((cadena[i]>=65 && cadena[i]<=90) ||(cadena[i]>=97 && cadena[i]<=123)){
+               listMod.addElement(Character.toString(cadena[i])+" ------>"+"Letra");
+               list_salida.setModel(listMod);
+               letters++;
+            }
+          //----Reconoce todos las Numeros-------------------------   
+            if(cadena[i]>=48 && cadena[i]<=57){
+               listMod.addElement(Character.toString(cadena[i])+" ------>"+"Digito");
+               list_salida.setModel(listMod);
+               numbers++;
+            }
+          //----Elimina espacios, tabuladores, saltos de linea-------------------------   
+            if(cadena[i]==32 || cadena[i]==9 || cadena[i]==10){
+               cadena[i]=cadena[i+1];  
+            }
         }
+        
+        Area_contador.setText("No.Letras: "+Integer.toString(letters)+"\n"
+                             +"No.Digitos: "+Integer.toString(numbers)+"\n"
+                             +"No.Simbolos: "+Integer.toString(symbol));
+        
+        
         
     }//GEN-LAST:event_bt_analizarActionPerformed
 

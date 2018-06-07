@@ -6,6 +6,7 @@
 package simbolos;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,7 @@ public class Menu extends javax.swing.JFrame {
         bt_analizar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         list_salida = new javax.swing.JList<>();
+        btn_acercade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +56,13 @@ public class Menu extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(list_salida);
 
+        btn_acercade.setText("Acerca De");
+        btn_acercade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_acercadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,8 +78,10 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(163, 163, 163)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(77, 77, 77)
-                .addComponent(bt_analizar)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bt_analizar)
+                    .addComponent(btn_acercade))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,8 +96,13 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btn_acercade)
+                        .addGap(25, 25, 25))))
         );
 
         pack();
@@ -133,6 +149,13 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bt_analizarActionPerformed
 
+    private void btn_acercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_acercadeActionPerformed
+        JOptionPane.showMessageDialog(this, "UNIVERSIDAD SAN CARLOS DE GUATEMALA \n"+
+                                            "Brian Steve Morales Samayoa \n"+
+                                            "Lenguajes formales y de programacion Seccion A \n"+
+                                            "Vacaciones Junio 2018");
+    }//GEN-LAST:event_btn_acercadeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -172,6 +195,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextArea Area_contador;
     private javax.swing.JTextArea Area_entrada;
     private javax.swing.JButton bt_analizar;
+    private javax.swing.JButton btn_acercade;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

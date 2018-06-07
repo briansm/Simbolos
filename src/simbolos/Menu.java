@@ -5,7 +5,9 @@
  */
 package simbolos;
 
+import java.io.*;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +16,9 @@ import javax.swing.JOptionPane;
  */
 public class Menu extends javax.swing.JFrame {
 
-    
+    JFileChooser selec=new JFileChooser();
+    File archivo;
+    Abrir_archivo marchi=new Abrir_archivo();
     public Menu() {
         initComponents();
     }
@@ -36,6 +40,7 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         list_salida = new javax.swing.JList<>();
         btn_acercade = new javax.swing.JButton();
+        btn_abrir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +68,13 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        btn_abrir.setText("Abrir");
+        btn_abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_abrirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,9 +90,10 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(163, 163, 163)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bt_analizar)
-                    .addComponent(btn_acercade))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btn_acercade)
+                    .addComponent(bt_analizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_abrir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -88,7 +101,9 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
+                        .addGap(62, 62, 62)
+                        .addComponent(btn_abrir)
+                        .addGap(32, 32, 32)
                         .addComponent(bt_analizar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
@@ -109,7 +124,8 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_analizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_analizarActionPerformed
-        DefaultListModel listMod = new DefaultListModel();
+        
+      DefaultListModel listMod = new DefaultListModel();
         String entrada=Area_entrada.getText();
         char[] cadena=entrada.toCharArray();
         int letters=0;
@@ -156,6 +172,19 @@ public class Menu extends javax.swing.JFrame {
                                             "Vacaciones Junio 2018");
     }//GEN-LAST:event_btn_acercadeActionPerformed
 
+    private void btn_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrirActionPerformed
+         if (selec.showDialog(this, "Abrir archivo")== JFileChooser.APPROVE_OPTION){
+                 archivo=selec.getSelectedFile();
+                if(archivo.getName().endsWith("lfp")){
+                    String contenido=marchi.Abrir(archivo);
+                    Area_entrada.setText(contenido);
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "NO es un archivo .lfp");
+                }
+                
+            }
+    }//GEN-LAST:event_btn_abrirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,6 +224,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextArea Area_contador;
     private javax.swing.JTextArea Area_entrada;
     private javax.swing.JButton bt_analizar;
+    private javax.swing.JButton btn_abrir;
     private javax.swing.JButton btn_acercade;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;

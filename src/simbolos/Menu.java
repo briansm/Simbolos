@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Dell E5420
  */
 public class Menu extends javax.swing.JFrame {
-
+    public boolean opcion=true;
     JFileChooser selec=new JFileChooser();
     File archivo;
     Abrir_archivo marchi=new Abrir_archivo();
@@ -36,11 +36,10 @@ public class Menu extends javax.swing.JFrame {
         Area_entrada = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         Area_contador = new javax.swing.JTextArea();
-        bt_analizar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         list_salida = new javax.swing.JList<>();
         btn_acercade = new javax.swing.JButton();
-        btn_abrir = new javax.swing.JButton();
+        btn_prueba = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,13 +51,6 @@ public class Menu extends javax.swing.JFrame {
         Area_contador.setRows(5);
         jScrollPane3.setViewportView(Area_contador);
 
-        bt_analizar.setText("Analizar");
-        bt_analizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_analizarActionPerformed(evt);
-            }
-        });
-
         jScrollPane4.setViewportView(list_salida);
 
         btn_acercade.setText("Acerca De");
@@ -68,10 +60,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btn_abrir.setText("Abrir");
-        btn_abrir.addActionListener(new java.awt.event.ActionListener() {
+        btn_prueba.setText("Abrir");
+        btn_prueba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_abrirActionPerformed(evt);
+                btn_pruebaActionPerformed(evt);
             }
         });
 
@@ -91,9 +83,8 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btn_acercade)
-                    .addComponent(bt_analizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_abrir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_acercade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_prueba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -101,15 +92,13 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(btn_abrir)
-                        .addGap(32, 32, 32)
-                        .addComponent(bt_analizar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(btn_prueba)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -123,48 +112,6 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bt_analizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_analizarActionPerformed
-        
-      DefaultListModel listMod = new DefaultListModel();
-        String entrada=Area_entrada.getText();
-        char[] cadena=entrada.toCharArray();
-        int letters=0;
-        int symbol=0;
-        int numbers=0;
-        
-        for(int i=0;i<cadena.length;i++){
-         //----Reconoce todos los distintos tipos de signos--------   
-            if((cadena[i]>=33 && cadena[i]<=47) ||(cadena[i]>=58 && cadena[i]<=64)||(cadena[i]>=91 && cadena[i]<=96)||(cadena[i]>=123 && cadena[i]<=125)){
-               listMod.addElement(Character.toString(cadena[i])+" ------>"+"Signo");
-               list_salida.setModel(listMod);
-               symbol++;
-            }
-         //----Reconoce todos las letras-------------------------   
-            if((cadena[i]>=65 && cadena[i]<=90) ||(cadena[i]>=97 && cadena[i]<=123)){
-               listMod.addElement(Character.toString(cadena[i])+" ------>"+"Letra");
-               list_salida.setModel(listMod);
-               letters++;
-            }
-          //----Reconoce todos las Numeros-------------------------   
-            if(cadena[i]>=48 && cadena[i]<=57){
-               listMod.addElement(Character.toString(cadena[i])+" ------>"+"Digito");
-               list_salida.setModel(listMod);
-               numbers++;
-            }
-          //----Elimina espacios, tabuladores, saltos de linea-------------------------   
-            if(cadena[i]==32 || cadena[i]==9 || cadena[i]==10){
-               cadena[i]=cadena[i+1];  
-            }
-        }
-        
-        Area_contador.setText("No.Letras: "+Integer.toString(letters)+"\n"
-                             +"No.Digitos: "+Integer.toString(numbers)+"\n"
-                             +"No.Simbolos: "+Integer.toString(symbol));
-        
-        
-        
-    }//GEN-LAST:event_bt_analizarActionPerformed
-
     private void btn_acercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_acercadeActionPerformed
         JOptionPane.showMessageDialog(this, "UNIVERSIDAD SAN CARLOS DE GUATEMALA \n"+
                                             "Brian Steve Morales Samayoa \n"+
@@ -172,8 +119,11 @@ public class Menu extends javax.swing.JFrame {
                                             "Vacaciones Junio 2018");
     }//GEN-LAST:event_btn_acercadeActionPerformed
 
-    private void btn_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrirActionPerformed
-         if (selec.showDialog(this, "Abrir archivo")== JFileChooser.APPROVE_OPTION){
+    private void btn_pruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pruebaActionPerformed
+       
+       if(opcion){
+           
+           if (selec.showDialog(this, "Abrir archivo")== JFileChooser.APPROVE_OPTION){
                  archivo=selec.getSelectedFile();
                 if(archivo.getName().endsWith("lfp")){
                     String contenido=marchi.Abrir(archivo);
@@ -181,9 +131,52 @@ public class Menu extends javax.swing.JFrame {
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "NO es un archivo .lfp");
                 }
-                
+             
             }
-    }//GEN-LAST:event_btn_abrirActionPerformed
+           opcion=false;
+           btn_prueba.setText("Analizar");
+         
+       }else{
+            DefaultListModel listMod = new DefaultListModel();
+            String entrada=Area_entrada.getText();
+            char[] cadena=entrada.toCharArray();
+            int letters=0;
+            int symbol=0;
+            int numbers=0;
+        
+            for(int i=0;i<cadena.length;i++){
+            //----Reconoce todos los distintos tipos de signos--------   
+                if((cadena[i]>=33 && cadena[i]<=47) ||(cadena[i]>=58 && cadena[i]<=64)||(cadena[i]>=91 && cadena[i]<=96)||(cadena[i]>=123 && cadena[i]<=125)){
+                    listMod.addElement(Character.toString(cadena[i])+" ------>"+"Signo");
+                    list_salida.setModel(listMod);
+                    symbol++;
+                }
+            //----Reconoce todos las letras-------------------------   
+                if((cadena[i]>=65 && cadena[i]<=90) ||(cadena[i]>=97 && cadena[i]<=123)){
+                    listMod.addElement(Character.toString(cadena[i])+" ------>"+"Letra");
+                    list_salida.setModel(listMod);
+                    letters++;
+                }
+            //----Reconoce todos las Numeros-------------------------   
+                if(cadena[i]>=48 && cadena[i]<=57){
+                    listMod.addElement(Character.toString(cadena[i])+" ------>"+"Digito");
+                    list_salida.setModel(listMod);
+                    numbers++;
+                }
+            //----Elimina espacios, tabuladores, saltos de linea-------------------------   
+                if(cadena[i]==32 || cadena[i]==9 || cadena[i]==10){
+                    cadena[i]=cadena[i+1];  
+                }
+        }
+        
+        Area_contador.setText("No.Letras: "+Integer.toString(letters)+"\n"
+                             +"No.Digitos: "+Integer.toString(numbers)+"\n"
+                             +"No.Simbolos: "+Integer.toString(symbol));
+         opcion=true;
+         btn_prueba.setText("Abrir");
+       }
+       
+    }//GEN-LAST:event_btn_pruebaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,9 +216,8 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Area_contador;
     private javax.swing.JTextArea Area_entrada;
-    private javax.swing.JButton bt_analizar;
-    private javax.swing.JButton btn_abrir;
     private javax.swing.JButton btn_acercade;
+    private javax.swing.JButton btn_prueba;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

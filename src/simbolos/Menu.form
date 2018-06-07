@@ -38,9 +38,8 @@
               </Group>
               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="btn_acercade" min="-2" max="-2" attributes="0"/>
-                  <Component id="bt_analizar" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btn_abrir" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btn_acercade" max="32767" attributes="0"/>
+                  <Component id="btn_prueba" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
@@ -50,18 +49,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                      <Component id="btn_abrir" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="bt_analizar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="244" max="-2" attributes="0"/>
                           <Component id="jScrollPane4" min="-2" pref="236" max="-2" attributes="0"/>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="btn_prueba" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="75" max="32767" attributes="0"/>
@@ -110,14 +107,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="bt_analizar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Analizar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_analizarActionPerformed"/>
-      </Events>
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane4">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -145,12 +134,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_acercadeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_abrir">
+    <Component class="javax.swing.JButton" name="btn_prueba">
       <Properties>
         <Property name="text" type="java.lang.String" value="Abrir"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_abrirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_pruebaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
